@@ -1,0 +1,44 @@
+# Node / Yarn
+node_modules/
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Dist / Build
+dist/
+build/
+.cache/
+out/
+.next/
+.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test Coverage
+coverage/
+
+# Env
+.env
+.env.*.local
+
+# Misc
+*.tgz

@@ -1,0 +1,16 @@
+{
+  "name": "react-snap-slider",
+  "version": "1.0.0",
+  "description": "A smart snap sider",
+  "main": "index.js",
+  "author": "Pranav HS",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "packageManager": "yarn@4.9.4",
+  "scripts": {
+    "build": "yarn workspaces foreach run build"
+  }
+}
