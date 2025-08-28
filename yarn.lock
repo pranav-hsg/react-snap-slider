@@ -2570,9 +2570,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-snap-slider-root@workspace:packages/react-snap-slider":
+"react-snap-slider@file:../../packages/react-snap-slider::locator=rss-sandbox%40workspace%3Aexamples%2Frss-sandbox":
+  version: 1.0.0
+  resolution: "react-snap-slider@file:../../packages/react-snap-slider#../../packages/react-snap-slider::hash=8d2695&locator=rss-sandbox%40workspace%3Aexamples%2Frss-sandbox"
+  peerDependencies:
+    react: ^19.1.1
+    react-dom: ^19.1.1
+  checksum: 10c0/22fe10bf3b7bb1b97a0556e17b22e2c3ee210d840f53cdc044031f887d3fd4f373220f3d9c9723d0fab95498d66ea236a361d1b00ea0d03d363df87991d530c3
+  languageName: node
+  linkType: hard
+
+"react-snap-slider@workspace:packages/react-snap-slider":
   version: 0.0.0-use.local
-  resolution: "react-snap-slider-root@workspace:packages/react-snap-slider"
+  resolution: "react-snap-slider@workspace:packages/react-snap-slider"
   dependencies:
     "@types/react": "npm:^19.1.12"
     "@types/react-dom": "npm:^19.1.9"
@@ -2581,12 +2591,6 @@ __metadata:
   peerDependencies:
     react: ^19.1.1
     react-dom: ^19.1.1
-  languageName: unknown
-  linkType: soft
-
-"react-snap-slider@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-snap-slider@workspace:."
   languageName: unknown
   linkType: soft
 
@@ -2721,6 +2725,7 @@ __metadata:
     globals: "npm:^16.3.0"
     react: "npm:^19.1.1"
     react-dom: "npm:^19.1.1"
+    react-snap-slider: ../../packages/react-snap-slider
     typescript: "npm:~5.8.3"
     typescript-eslint: "npm:^8.39.1"
     vite: "npm:^7.1.2"
@@ -2797,6 +2802,12 @@ __metadata:
   checksum: 10c0/a16775323e1404dd43fabafe7460be13a471e021637bc7889468eb45ce6a6b207261f454e4e530a19500cc962c4cc5348583520843b363f4193cee5c00e1e539
   languageName: node
   linkType: hard
+
+"snap-slider@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "snap-slider@workspace:."
+  languageName: unknown
+  linkType: soft
 
 "socks-proxy-agent@npm:^8.0.3":
   version: 8.0.5

@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-function Slider(): React.ReactElement {
+const Slider: React.FC<any> = () => {
     return (
-        <div>Slider</div>
+        <div> Slider</div >
     )
 }
 
