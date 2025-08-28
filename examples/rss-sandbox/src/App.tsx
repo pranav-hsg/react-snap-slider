@@ -3,9 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Slider } from 'react-snap-slider'
+import { type ButtonProps } from 'react-snap-slider'
 function App() {
   const [count, setCount] = useState(0)
-
+  const a: ButtonProps = { label: 'mango', onClick: () => { console.log("a") } };
+  console.log(a)
   return (
     <>
       hai

@@ -1,9 +1,9 @@
 import { useState } from "react";
-interface ButtonProps {
+export interface ButtonProps {
     label: string;
     onClick: () => void;
 }
-const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
     const [clicked, setClicked] = useState(false);
     const handleClick = () => {
         setClicked(true);
@@ -15,4 +15,7 @@ const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
         </button>
     );
 };
-export default Button;
+
+export interface meow {
+    hello: 'world';
+}

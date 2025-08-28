@@ -5,5 +5,4 @@ const Slider: React.FC<any> = () => {
         <div> Slider</div >
     )
 }
-
 export default Slider
