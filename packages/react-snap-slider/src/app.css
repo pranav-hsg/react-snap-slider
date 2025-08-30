@@ -1,0 +1,73 @@
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+
+}
+
+
+button {
+    border: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    padding: 1em;
+    background-color: inherit;
+    border-radius: 6px;
+    /* border: none; */
+    /* slightly rounded corners */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-shadow: 2px solid black;
+    justify-content: center;
+    color: inherit;
+    z-index: 100;
+    /* inherit text color */
+}
+
+.arrow {
+    border: solid currentColor;
+    /* inherit color from parent */
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/* Rotate to make arrows */
+.arrow.right {
+    transform: rotate(-45deg);
+}
+
+.arrow.left {
+    transform: rotate(135deg);
+}
+
+.navigation-left {
+    left: 20px;
+}
+
+.navigation-right {
+    right: 20px;
+}

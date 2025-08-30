@@ -12,7 +12,8 @@
   "packageManager": "yarn@4.9.4",
   "scripts": {
     "build:all": "yarn workspaces foreach -A run build",
-    "build:lib": "yarn workspace react-snap-slider run build",
-    "dev": "yarn workspace rss-sandbox run dev"
+    "build:lib": "yarn workspace react-snap-slider run dev",
+    "dev": "yarn workspace rss-sandbox run dev",
+    "bnr": "yarn run build:lib"
   }
 }
