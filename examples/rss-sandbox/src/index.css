@@ -1,12 +1,12 @@
 /* Slider.css */
 .slider-wrapper {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .slide-card {
-  width: 240px;
+  max-width: 240px;
   height: 340px;
   background-color: #111;
   border-radius: 12px;
