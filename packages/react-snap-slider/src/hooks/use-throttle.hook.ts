@@ -13,7 +13,6 @@ export function useThrottle<T extends (...args: any[]) => void>(func: T, delay =
             timerId.current = setTimeout(() => {
                 timerId.current = null;
             }, delay);
-            console.log('throttle called - from hook');
             ref.current?.(...args);
         }
     }, []);

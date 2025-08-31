@@ -25,7 +25,6 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
     const gap = useAutoMargin({ containerRef: sliderContainer, cardWidth, minGap, deps: [windowWidth] });
     const { handleKeyPress } = useKeyboardSlider({
         onKeyup: (direction: SliderDirection) => {
-            console.log("key up", direction);
             moveSlider(direction, 1);
         }
     });

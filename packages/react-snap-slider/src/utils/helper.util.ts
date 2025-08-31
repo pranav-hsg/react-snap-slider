@@ -3,9 +3,7 @@
 export const throttle = <T extends (...args: any[]) => void>(func: T): (...args: Parameters<T>) => void => {
     let timeout: number;
     let random = Math.random() * 1000;
-    console.log('throttle defined', random);
     return function (...args: Parameters<T>) {
-        console.log('throttle called', random);
         if (!timeout) {
             timeout = setTimeout(() => {
                 timeout = null;
