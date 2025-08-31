@@ -30,7 +30,7 @@ export default defineConfig({
     splitting: false,
     clean: true,
     sourcemap: true,
-    minify: true,
+    minify: false,
     injectStyle: css => {
         return `${injectFunc}injectStyle(${css});`;
     },

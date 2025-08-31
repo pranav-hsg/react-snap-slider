@@ -8,9 +8,9 @@ function App() {
   const a: ButtonProps = { label: 'mango', onClick: () => { console.log("a") } };
   return (
     <>
-      <div style={{}}>
+      <div style={{ backgroundColor: 'white' }}>
 
-        <Slider>
+        <Slider >
           {data.map(e => {
             return <Slide d={e} key={e.id}></Slide>
           })}
@@ -30,7 +30,7 @@ function App() {
 }
 
 function Slide({ d }: { d: any }) {
-  return (<div className="slider-wrapper" style={{ width: '200px' }}>
+  return (<div className="slider-wrapper" style={{ width: 200 + 'px' }}>
     <div className="slide-card">
       <img src={d.image} alt={d.caption} className="slide-image" />
       <div className="slide-caption">{d.caption}</div>

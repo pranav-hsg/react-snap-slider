@@ -1,20 +1,26 @@
-// Throttler
-export const throttle = (func: any) => {
+// Throttler here Parameters<T> is used to infer the parameter types of the function T
+// Also T extends (...args: any[]) => void ensures that T is a function type
+export const throttle = <T extends (...args: any[]) => void>(func: T): (...args: Parameters<T>) => void => {
     let timeout: number;
-    return function (...args: any) {
+    let random = Math.random() * 1000;
+    console.log('throttle defined', random);
+    return function (...args: Parameters<T>) {
+        console.log('throttle called', random);
         if (!timeout) {
             timeout = setTimeout(() => {
                 timeout = null;
-            }, 400);
+            }, 1000);
             func(...args);
         }
     };
-}
-// Debounce function
-export const debounce = ((func: any, ...args: any) => {
+};
+
+// Debounce function, here Parameters<T> is used to infer the parameter types of the function T
+// Also T extends (...args: any[]) => void ensures that T is a function type
+export const debounce = <T extends (...args: any[]) => void>(func: T): (...args: Parameters<T>) => void => {
     let timeout: number;
-    return function () {
+    return function (...args: Parameters<T>) {
         clearTimeout(timeout);
         timeout = setTimeout(() => func(...args), 600);
     };
-})
+};

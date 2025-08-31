@@ -21,6 +21,7 @@ button {
 
 .slider-container {
     position: relative;
+    background-color: inherit;
     overflow: hidden;
     margin: 0;
     display: flex;
@@ -29,21 +30,40 @@ button {
 
 .navigation {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    padding: 1em;
-    background-color: inherit;
-    border-radius: 6px;
-    /* border: none; */
-    /* slightly rounded corners */
+    width: 30px;
+    /* fixed size */
+    height: 30px;
+    background-color: white;
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    box-shadow: 2px solid black;
     justify-content: center;
-    color: inherit;
+    color: black;
     z-index: 100;
-    /* inherit text color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.navigation-left {
+    padding-left: 4px;
+}
+
+.navigation-right {
+    padding-right: 4px;
+}
+
+button.navigation::before {
+    content: " ";
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background-color: transparent;
+    display: inline-block;
+    color: red;
+    transform: translate3d(-14px, -5000vw, 0);
+    width: 200%;
+    height: 10000vw;
+    font-weight: bold;
 }
 
 .arrow {

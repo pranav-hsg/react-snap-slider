@@ -1,15 +1,19 @@
 import { debounce } from '../utils/helper.util';
 import { useState, useEffect } from 'react';
 
-export function useWindowDimensions() {
+interface WindowSize {
+    width: number;
+    height: number;
+}
 
-    const [windowSize, setWindowSize] = useState({
+export function useWindowDimensions(): WindowSize {
+    const [windowSize, setWindowSize] = useState<WindowSize>({
         width: window?.innerWidth,
         height: window?.innerHeight,
     });
 
     useEffect(() => {
-        const handleResize = debounce(() => {
+        const handleResize: () => void = debounce(() => {
             setWindowSize({
                 width: window.innerWidth,
                 height: window.innerHeight,
@@ -23,5 +27,5 @@ export function useWindowDimensions() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    return windowSize; // { width, height }
+    return windowSize;
 }
