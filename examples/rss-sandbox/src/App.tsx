@@ -1,11 +1,7 @@
-import { useState } from 'react'
 import './App.css'
 import { Slider } from 'react-snap-slider'
-import { type ButtonProps } from 'react-snap-slider'
 import { data } from './data'
 function App() {
-  const [count, setCount] = useState(0)
-  const a: ButtonProps = { label: 'mango', onClick: () => { console.log("a") } };
   return (
     <>
       <div style={{ backgroundColor: 'white' }}>
