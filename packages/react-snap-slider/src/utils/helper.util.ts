@@ -2,7 +2,6 @@
 // Also T extends (...args: any[]) => void ensures that T is a function type
 export const throttle = <T extends (...args: any[]) => void>(func: T): (...args: Parameters<T>) => void => {
     let timeout: number;
-    let random = Math.random() * 1000;
     return function (...args: Parameters<T>) {
         if (!timeout) {
             timeout = setTimeout(() => {
