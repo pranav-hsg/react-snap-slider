@@ -29,10 +29,6 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
             moveSlider(direction, 1);
         }
     });
-    const handleKeyPress1 = (e: React.KeyboardEvent<HTMLElement>) => {
-        console.log("key pressed");
-        handleKeyPress(e);
-    }
     const { handleTouchStart, handleTouchEnd } = useTouchSlider({
         onSwipe: (direction) => {
             moveSlider(direction, 1);
@@ -58,7 +54,7 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
     }
     return (
         <>
-            <div className="slider-container" ref={sliderContainer} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onKeyUp={handleKeyPress1} tabIndex={0}>
+            <div className="slider-container" ref={sliderContainer} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onKeyUp={handleKeyPress} tabIndex={0}>
                 <button role="button" aria-label="Previous slide" className="navigation navigation-left" onClick={() => { moveSlider(SliderDirection.LEFT, 1) }}>
                     <div className="arrow left" ></div>
                 </button>
