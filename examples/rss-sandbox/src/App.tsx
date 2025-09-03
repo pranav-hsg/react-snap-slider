@@ -2,13 +2,17 @@ import './App.css'
 import { Slider } from 'react-snap-slider'
 import { data } from './data'
 function App() {
+  const settings = {
+    minGap: 10,
+    carouselMode: false
+  }
   return (
     <>
       <div style={{ backgroundColor: 'white' }}>
 
-        <Slider >
+        <Slider settings={settings}>
           {data.map(e => {
-            return <Slide d={e} key={e.id}></Slide>
+            return <Slide d={e} key={e.id} ></Slide>
           })}
         </Slider>
 

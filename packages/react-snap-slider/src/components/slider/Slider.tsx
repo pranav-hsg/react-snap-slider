@@ -4,10 +4,11 @@ import { useAutoMargin } from '../../hooks/use-auto-margin.hook';
 import { useTouchSlider } from '../../hooks/use-touch-slider.hook';
 import { SliderDirection } from '../../types/slider.type';
 import { useKeyboardSlider } from '../../hooks/use-keyboard-slider.hook';
+import { useThrottle } from '../../hooks/use-throttle.hook';
 
 type SliderSettings = {
     minGap?: number;
-    // todo: Add other settings properties as needed
+    carouselMode?: boolean;
 };
 
 type SliderProps = {
@@ -39,9 +40,20 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
             setCardWidth(firstChild.offsetWidth);
         }
     }, []);
-    function moveSlider(direction: SliderDirection, n = 1) {
+    React.useEffect(() => {
+        setSliderOffset(0);
+    }, [windowWidth]);
+    function computeScrollAmount(
+        n: number,
+        mode: 'item' | 'page' = 'item',
+        containerWidth: number,
+        totalItemWidth: number,
+    ) {
+        return n * (mode === 'page' ? containerWidth : totalItemWidth);
+    }
+    function moveSlider(direction: SliderDirection, n = 1, mode: 'item' | 'page' = 'item') {
         let updatedSliderOffset = 0;
-        const scrollAmount = n * (cardWidth + gap);
+        const scrollAmount = computeScrollAmount(n, mode, sliderContainer.current?.offsetWidth ?? 0, cardWidth + gap);
         if (containerRef.current) {
             if (direction === SliderDirection.RIGHT) {
                 updatedSliderOffset = Math.min(containerRef.current.offsetWidth - sliderContainer.current.offsetWidth, sliderOffset + scrollAmount);
@@ -51,17 +63,18 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
         }
         setSliderOffset(updatedSliderOffset);
     }
+    const throttledMoveSlider = useThrottle(moveSlider, 600);
     return (
         <>
             <div className="slider-container" ref={sliderContainer} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onKeyUp={handleKeyPress} tabIndex={0}>
-                <button role="button" aria-label="Previous slide" className="navigation navigation-left" onClick={() => { moveSlider(SliderDirection.LEFT, 1) }}>
+                <button role="button" aria-label="Previous slide" className="navigation navigation-left" disabled={sliderOffset == 0} onClick={() => { throttledMoveSlider(SliderDirection.LEFT, 1) }}>
                     <div className="arrow left" ></div>
                 </button>
-                <div style={{ display: 'flex', gap: gap + 'px', padding: `0 ${gap / 2}px`, transform: `translateX(${-sliderOffset}px)`, transition: 'transform 0.4s ease-in-out' }} ref={containerRef}>
+                <div style={{ display: 'flex', gap: settings?.carouselMode ? 0 : gap + 'px', padding: `0 ${gap / 2}px`, transform: `translateX(${-sliderOffset}px)`, transition: 'transform 0.4s ease-in-out' }} ref={containerRef}>
                     {children}
                 </div>
 
-                <button role="button" aria-label="Next slide" className="navigation navigation-right" onClick={() => { moveSlider(SliderDirection.RIGHT, 1) }}>
+                <button disabled={(sliderOffset + sliderContainer.current?.offsetWidth) === containerRef.current?.offsetWidth} role="button" aria-label="Next slide" className="navigation navigation-right" onClick={() => { throttledMoveSlider(SliderDirection.RIGHT, 1) }}>
                     <div className="arrow right"></div>
                 </button>
             </div>

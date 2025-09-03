@@ -91,3 +91,9 @@ button.navigation::before {
 .navigation-right {
     right: 20px;
 }
+
+button:disabled,
+button:disabled div {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
