@@ -22,12 +22,12 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
     const containerRef = React.useRef(null);
     const [cardWidth, setCardWidth] = React.useState(0);
     const [sliderOffset, setSliderOffset] = React.useState(0);
-    const { width: windowWidth } = useWindowDimensions();
+    const { width: windowWidth } = useWindowDimensions({ delay: 200 });
     const gap = useAutoMargin({ containerRef: sliderContainer, cardWidth, minGap, deps: [windowWidth] });
     const { handleKeyPress } = useKeyboardSlider({
         onKeyup: (direction: SliderDirection) => {
             moveSlider(direction, 1);
-        }
+        },
     });
     const { handleTouchStart, handleTouchEnd } = useTouchSlider({
         onSwipe: (direction) => {
@@ -63,14 +63,14 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
         }
         setSliderOffset(updatedSliderOffset);
     }
-    const throttledMoveSlider = useThrottle(moveSlider, 600);
+    const throttledMoveSlider = useThrottle(moveSlider, 400);
     return (
         <>
             <div className="slider-container" ref={sliderContainer} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onKeyUp={handleKeyPress} tabIndex={0}>
                 <button role="button" aria-label="Previous slide" className="navigation navigation-left" disabled={sliderOffset == 0} onClick={() => { throttledMoveSlider(SliderDirection.LEFT, 1) }}>
                     <div className="arrow left" ></div>
                 </button>
-                <div style={{ display: 'flex', gap: settings?.carouselMode ? 0 : gap + 'px', padding: `0 ${gap / 2}px`, transform: `translateX(${-sliderOffset}px)`, transition: 'transform 0.4s ease-in-out' }} ref={containerRef}>
+                <div style={{ display: 'flex', gap: settings?.carouselMode ? 0 : gap + 'px', padding: `0 ${gap / 2}px`, transform: `translateX(${-sliderOffset}px)`, transition: 'transform 0.4s ease-in-out' }} ref={containerRef} className={"slider-track " + (settings?.carouselMode ? "carousel-mode" : "")}>
                     {children}
                 </div>
 

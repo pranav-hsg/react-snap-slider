@@ -97,3 +97,11 @@ button:disabled div {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* .slider-track .carousel-mode>* {
+    flex-shrink: 0;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+*/

@@ -9,7 +9,7 @@ interface WindowSize {
     height: number;
 }
 
-export function useWindowDimensions(): WindowSize {
+export function useWindowDimensions({ delay = 400 }): WindowSize {
     const [windowSize, setWindowSize] = useState<WindowSize>({
         width: window?.innerWidth,
         height: window?.innerHeight,
@@ -22,7 +22,7 @@ export function useWindowDimensions(): WindowSize {
                 height: window.innerHeight,
             });
         };
-        const debouncedHandleResize = debounce(handleResize);
+        const debouncedHandleResize = debounce(handleResize, delay);
         window.addEventListener('resize', debouncedHandleResize);
 
         handleResize();

@@ -30,9 +30,9 @@ function App() {
 }
 
 function Slide({ d }: { d: any }) {
-  return (<div className="slider-wrapper" style={{ width: 200 + 'px' }}>
+  return (<div className="slider-wrapper" style={{ width: '200px' }}>
     <div className="slide-card">
-      <img src={d.image} alt={d.caption} className="slide-image" />
+      <img src={d.image} alt={d.caption} className="slide-image" loading='eager' />
       <div className="slide-caption">{d.caption}</div>
     </div>
   </div>)
