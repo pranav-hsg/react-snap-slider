@@ -8,7 +8,7 @@ export const calculateMargin = ({ totalWidthAvailable, eachCardWidth, minGap }) 
     //    Use Math.trunc to ignore the partial card that doesn't fully fit ex: 1600/300  = 5
     const sliderCardsPerVisibleWidth = Math.trunc(totalWidthAvailable / eachSlideWidth)
 
-    // 3. marginPerSlide (return value):
+    // 3. [marginPerSlide (return value), sliderCardsPerVisibleWidth]:
     //    - If equal left/right margin per card is required then, divide it by 2. ex: (1600/5) - 290 = 30
-    return totalWidthAvailable / sliderCardsPerVisibleWidth - eachCardWidth;
+    return [totalWidthAvailable / sliderCardsPerVisibleWidth - eachCardWidth, sliderCardsPerVisibleWidth];
 }
