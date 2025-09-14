@@ -21,7 +21,8 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
     const minGap = settings?.minGap ?? 10;
     const sliderContainer = React.useRef(null);
     const containerRef = React.useRef(null);
-    const [cardsToSlide, setCardsToSlide] = React.useState<number>(3);
+    const totalCardsRef = React.useRef(React.Children.count(children));
+    const [cardsToSlide, setCardsToSlide] = React.useState<number>(4);
     const [cardWidth, setCardWidth] = React.useState(0);
     const [sliderOffset, setSliderOffset] = React.useState(0);
     const { width: windowWidth } = useWindowDimensions({ delay: 200 });
@@ -67,7 +68,8 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
                     // 2. After transition ends → jump back to start without animation
                     containerRef.current.addEventListener("transitionend", () => {
                         containerRef.current.style.transition = "none";
-                        setSliderOffset(scrollAmount);
+                        totalVisibleSlides.current = (React.Children.count(children) - postCloneCount) + visibleCards;
+                        setSliderOffset((postCloneCount + visibleCards * (cardWidth + gap)));
 
                         // force reflow before restoring transition
                         void containerRef.current.offsetWidth;
@@ -91,9 +93,10 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
     // function ceilMultiple(base: number, minimum: number): number {
     //     return Math.ceil(minimum / base) * base;
     // }
-
-    const { postCloneCount } = useInfiniteScroll({ totalSlides: React.Children.count(children), slidesToScroll: cardsToSlide, visibleSlidesCount: visibleCards });
-    console.log({ postCloneCount });
+    const totalVisibleSlides = React.useRef(React.Children.count(children));
+    const { preCloneCount, postCloneCount, remainingSlots } = useInfiniteScroll({ totalSlides: totalVisibleSlides.current, slidesToScroll: cardsToSlide, visibleSlidesCount: visibleCards });
+    totalCardsRef.current = React.Children.count(children) - remainingSlots;
+    console.log({ preCloneCount, remainingSlots, postCloneCount });
     const slides = React.Children.toArray(children);
     return (
         <>
@@ -102,7 +105,7 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
                     <div className="arrow left" ></div>
                 </button>
                 <div style={{ display: 'flex', gap: settings?.carouselMode ? 0 : gap + 'px', padding: `0 ${gap / 2}px`, transform: `translateX(${-sliderOffset}px)`, transition: 'transform 0.4s ease-in-out' }} ref={containerRef} className={"slider-track " + (settings?.carouselMode ? "carousel-mode" : "")}>
-                    {React.Children.toArray(children).splice(slides.length - postCloneCount, postCloneCount)}
+                    {React.Children.toArray(children).splice(slides.length - preCloneCount, preCloneCount)}
                     {children}
                     {React.Children.toArray(children).splice(0, postCloneCount)}
                 </div>

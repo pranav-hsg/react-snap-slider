@@ -34,46 +34,46 @@ export const data = [
         "image": "https://picsum.photos/400/307",
         "caption": "A unique geometric pattern (7)"
     },
-    {
-        "id": 8,
-        "image": "https://picsum.photos/400/308",
-        "caption": "A vintage-style photo (8)"
-    },
-    {
-        "id": 9,
-        "image": "https://picsum.photos/400/309",
-        "caption": "A shot of food (9)"
-    },
-    {
-        "id": 10,
-        "image": "https://picsum.photos/400/310",
-        "caption": "A picture of animals (10)"
-    },
-    {
-        "id": 11,
-        "image": "https://picsum.photos/400/311",
-        "caption": "A tranquil forest scene (11)"
-    },
-    {
-        "id": 12,
-        "image": "https://picsum.photos/400/312",
-        "caption": "A vibrant street art piece (12)"
-    },
-    {
-        "id": 13,
-        "image": "https://picsum.photos/400/313",
-        "caption": "A desert landscape at dusk (13)"
-    },
-    {
-        "id": 14,
-        "image": "https://picsum.photos/400/314",
-        "caption": "An extreme close-up (14)"
-    },
-    {
-        "id": 15,
-        "image": "https://picsum.photos/400/315",
-        "caption": "A photo of an event (15)"
-    },
+    // {
+    //     "id": 8,
+    //     "image": "https://picsum.photos/400/308",
+    //     "caption": "A vintage-style photo (8)"
+    // },
+    // {
+    //     "id": 9,
+    //     "image": "https://picsum.photos/400/309",
+    //     "caption": "A shot of food (9)"
+    // },
+    // {
+    //     "id": 10,
+    //     "image": "https://picsum.photos/400/310",
+    //     "caption": "A picture of animals (10)"
+    // },
+    // {
+    //     "id": 11,
+    //     "image": "https://picsum.photos/400/311",
+    //     "caption": "A tranquil forest scene (11)"
+    // },
+    // {
+    //     "id": 12,
+    //     "image": "https://picsum.photos/400/312",
+    //     "caption": "A vibrant street art piece (12)"
+    // },
+    // {
+    //     "id": 13,
+    //     "image": "https://picsum.photos/400/313",
+    //     "caption": "A desert landscape at dusk (13)"
+    // },
+    // {
+    //     "id": 14,
+    //     "image": "https://picsum.photos/400/314",
+    //     "caption": "An extreme close-up (14)"
+    // },
+    // {
+    //     "id": 15,
+    //     "image": "https://picsum.photos/400/315",
+    //     "caption": "A photo of an event (15)"
+    // },
     // {
     //     "id": 16,
     //     "image": "https://picsum.photos/400/314",
