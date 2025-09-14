@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { calculateMargin } from '../utils/calulate-margin.util'
+import { useWindowDimensions } from './use-window-dimension.hook'
 
 interface AutoMarginOptions {
     containerRef: React.RefObject<HTMLElement>
@@ -10,6 +11,7 @@ interface AutoMarginOptions {
 
 export function useAutoMargin({ containerRef, cardWidth, minGap, deps = [] }: AutoMarginOptions): number {
     const [gap, setGap] = React.useState<number>(minGap)
+    const { width } = useWindowDimensions({ delay: 200 });
     React.useEffect(() => {
         if (!containerRef.current || !cardWidth) return
         const marginPerSlide = calculateMargin({
@@ -18,7 +20,7 @@ export function useAutoMargin({ containerRef, cardWidth, minGap, deps = [] }: Au
             minGap
         })
         setGap(marginPerSlide)
-    }, [cardWidth, minGap, containerRef, ...deps])
+    }, [cardWidth, minGap, containerRef, width, ...deps])
 
     return gap
 }
