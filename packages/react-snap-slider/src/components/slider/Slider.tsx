@@ -9,10 +9,10 @@ import useCardWidth from '../../hooks/use-card-width.hook';
 
 const Slider: React.FC<SliderProps> = ({ children, settings }) => {
     const minGap = settings?.minGap ?? 10;
-    const sliderContainer = React.useRef(null);
+    const sliderContainerRef = React.useRef(null);
     const sliderTrackRef = React.useRef(null);
     const { cardWidth } = useCardWidth(sliderTrackRef, 0);
-    const gap = useAutoMargin({ containerRef: sliderContainer, cardWidth, minGap });
+    const gap = useAutoMargin({ containerRef: sliderContainerRef, cardWidth, minGap });
     const { handleKeyPress } = useKeyboardSlider({
         onKeyup: (direction: SliderDirection) => {
             moveSlider(direction, 1);
@@ -24,15 +24,15 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
         }
     });
     const { moveSlider, sliderOffset } = useMoveSlider({
-        cardWidth: cardWidth,
-        gap: gap,
-        totalWidth: sliderTrackRef.current?.scrollWidth,
-        visibleWidth: sliderContainer.current?.offsetWidth
+        cardWidth,
+        gap,
+        totalWidthRef: sliderTrackRef,
+        visibleWidthRef: sliderContainerRef
     });
 
     return (
         <>
-            <div className="slider-container" ref={sliderContainer} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onKeyUp={handleKeyPress} tabIndex={0}>
+            <div className="slider-container" ref={sliderContainerRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onKeyUp={handleKeyPress} tabIndex={0}>
                 <button role="button" aria-label="Previous slide" className="navigation navigation-left" disabled={sliderOffset == 0} onClick={() => { moveSlider(SliderDirection.LEFT, 4) }}>
                     <div className="arrow left" ></div>
                 </button>
@@ -40,7 +40,7 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
                     {children}
                 </div>
 
-                <button disabled={(sliderOffset + sliderContainer.current?.offsetWidth) === sliderTrackRef.current?.offsetWidth} role="button" aria-label="Next slide" className="navigation navigation-right" onClick={() => { moveSlider(SliderDirection.RIGHT, 4) }}>
+                <button disabled={(sliderOffset + sliderContainerRef.current?.offsetWidth) === sliderTrackRef.current?.offsetWidth} role="button" aria-label="Next slide" className="navigation navigation-right" onClick={() => { moveSlider(SliderDirection.RIGHT, 4) }}>
                     <div className="arrow right"></div>
                 </button>
             </div>

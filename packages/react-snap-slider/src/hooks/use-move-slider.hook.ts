@@ -6,18 +6,18 @@ import { useWindowDimensions } from "./use-window-dimension.hook";
 interface UseSliderOptions {
   cardWidth: number;
   gap: number;
-  totalWidth?: number;
-  visibleWidth?: number;
+  totalWidthRef?: React.RefObject<HTMLElement>;
+  visibleWidthRef?: React.RefObject<HTMLElement>;
 }
 
-export function useMoveSlider({ cardWidth, gap, totalWidth, visibleWidth }: UseSliderOptions) {
+export function useMoveSlider({ cardWidth, gap, totalWidthRef, visibleWidthRef }: UseSliderOptions) {
   const [sliderOffset, setSliderOffset] = useState(0);
   const { width: windowWidth } = useWindowDimensions({ delay: 200 });
 
   const computeScrollAmount = useCallback(
     (n: number, mode: "item" | "page" = "item") => {
       return n * (mode === "page"
-        ? totalWidth ?? 0
+        ? totalWidthRef?.current?.offsetWidth ?? 0
         : cardWidth + gap);
     },
     [cardWidth, gap]
@@ -25,6 +25,8 @@ export function useMoveSlider({ cardWidth, gap, totalWidth, visibleWidth }: UseS
 
   const moveSlider = useCallback(
     (direction: SliderDirection, n = 1, mode: "item" | "page" = "item") => {
+      const totalWidth = totalWidthRef?.current?.scrollWidth ?? 0;
+      const visibleWidth = visibleWidthRef?.current?.offsetWidth ?? 0;
       let updatedSliderOffset = 0;
       const scrollAmount = computeScrollAmount(n, mode);
 
@@ -45,7 +47,6 @@ export function useMoveSlider({ cardWidth, gap, totalWidth, visibleWidth }: UseS
   useEffect(() => {
     setSliderOffset(0);
   }, [windowWidth]);
-
   // throttle the movement
   const throttledMoveSlider = useThrottle(moveSlider, 400);
 
