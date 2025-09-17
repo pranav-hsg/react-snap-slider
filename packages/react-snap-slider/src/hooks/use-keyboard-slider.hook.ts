@@ -1,4 +1,3 @@
-import { throttle } from './../utils/helper.util';
 import * as React from "react";
 import { SliderDirection } from "../types/slider.type";
 import { useThrottle } from "./use-throttle.hook";

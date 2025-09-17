@@ -20,7 +20,7 @@ export function useAutoMargin({ containerRef, cardWidth, minGap, deps = [] }: Au
             minGap
         })
         setGap(marginPerSlide)
-    }, [cardWidth, minGap, containerRef, width, ...deps])
+    }, [cardWidth, minGap, width, ...deps])
 
     return gap
 }

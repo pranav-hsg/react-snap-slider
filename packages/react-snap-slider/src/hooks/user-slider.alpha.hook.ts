@@ -24,7 +24,7 @@ export function useSlider({
     const computeScrollAmount = React.useCallback(
         (n: number, mode: 'item' | 'page' = 'item') =>
             n * (mode === 'page' ? (sliderContainerRef.current?.offsetWidth ?? 0) : cardWidth + gap),
-        [cardWidth, gap, sliderContainerRef]
+        [cardWidth, gap]
     );
 
     const moveSlider = React.useCallback(
@@ -42,7 +42,7 @@ export function useSlider({
                 }
             });
         },
-        [computeScrollAmount, containerRef, sliderContainerRef]
+        [computeScrollAmount]
     );
 
     const throttledMoveSlider = useThrottle(moveSlider, throttleMs);

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { useWindowDimensions } from '../../hooks/use-window-dimension.hook';
 import { useAutoMargin } from '../../hooks/use-auto-margin.hook';
 import { useTouchSlider } from '../../hooks/use-touch-slider.hook';
 import { SliderDirection, SliderProps } from '../../types/slider.type';
@@ -37,6 +36,8 @@ const Slider: React.FC<SliderProps> = ({ children, settings }) => {
                     <div className="arrow left" ></div>
                 </button>
                 <div style={{ display: 'flex', gap: settings?.carouselMode ? 0 : gap + 'px', padding: `0 ${gap / 2}px`, transform: `translateX(${-sliderOffset}px)`, transition: 'transform 0.4s ease-in-out' }} ref={sliderTrackRef} className={"slider-track " + (settings?.carouselMode ? "carousel-mode" : "")}>
+                    {children}
+                    {children}
                     {children}
                 </div>
 

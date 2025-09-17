@@ -8,6 +8,6 @@ export default function useCardWidth(sliderTrackRef: React.RefObject<HTMLElement
             const firstChild = sliderTrackRef.current.children[0] as HTMLElement;
             setCardWidth(firstChild.offsetWidth);
         }
-    }, [sliderTrackRef]);
+    }, []);
     return { cardWidth };
 }
